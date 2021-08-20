@@ -7,8 +7,12 @@ router.get("/", (ctx) => {
   ctx.response.body = "Test";
 });
 
-router.get("/static/css/style.css", async () => {
-  return await fetch(new URL("static/css/style.css", import.meta.url));
+router.get("/static/css/style.css", async (ctx) => {
+  const response = await fetch(
+    new URL("static/css/style.css", import.meta.url),
+  );
+  ctx.response.body = response.body;
+  ctx.response.headers = response.headers;
 });
 
 router.all("/(.*)", (ctx) => {
