@@ -3,10 +3,6 @@ import { serveStatic } from "./lib/static.ts";
 const app = new Application();
 const router = new Router();
 
-router.get("/", (ctx) => {
-  ctx.response.body = "Test";
-});
-
 const staticRouter = serveStatic(router);
 staticRouter("/static/index.html", "/");
 staticRouter("/static/css/style.css", "/css/style.css");
