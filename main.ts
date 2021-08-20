@@ -12,8 +12,10 @@ router.get("/static/css/style.css", async (ctx) => {
     new URL("static/css/style.css", import.meta.url),
   );
   ctx.response.body = response.body;
-  response.headers.set("content-type", "text/css; charset=utf-8");
-  ctx.response.headers = response.headers;
+  const headers = new Headers(response.headers);
+  // Set the appropriate content-type header value.
+  headers.set("content-type", "text/css; charset=utf-8");
+  ctx.response.headers = headers;
 });
 
 router.all("/(.*)", (ctx) => {
