@@ -1,10 +1,9 @@
 import { Router } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 export function serveStatic(router: Router) {
   return (file: string, contentType: string, path?: string) => {
-    console.log(new URL(file.substr(1), import.meta.url));
     router.get(path?.length ? path : file, async (ctx) => {
       const response = await fetch(
-        new URL(".." + file.substr(1), import.meta.url),
+        new URL(".." + file, import.meta.url),
       );
       ctx.response.body = response.body;
       const headers = new Headers(response.headers);
