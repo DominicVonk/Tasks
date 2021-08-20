@@ -10,6 +10,7 @@ export function serveStatic(router: Router) {
       // Set the appropriate content-type header value.
       headers.set("content-type", contentType || "text/plain; charset=utf-8");
       headers.delete("content-security-policy");
+      console.log(headers);
       ctx.response.headers = headers;
     });
   };
