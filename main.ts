@@ -2,6 +2,10 @@ import { Application, Router } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 import { serveStatic } from "./lib/static.ts";
 const app = new Application();
 const router = new Router();
+app.use(async (ctx, next) => {
+  ctx.response.headers.delete("content-security-policy");
+  await next();
+});
 
 const staticRouter = serveStatic(router);
 staticRouter("/static/index.html", "text/html; charset=utf-8", "/");
