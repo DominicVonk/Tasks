@@ -4,7 +4,7 @@ export function serveStatic(router: Router) {
     console.log(new URL(file.substr(1), import.meta.url));
     router.get(path?.length ? path : file, async (ctx) => {
       const response = await fetch(
-        new URL(file.substr(1), import.meta.url),
+        new URL(".." + file.substr(1), import.meta.url),
       );
       ctx.response.body = response.body;
       const headers = new Headers(response.headers);
