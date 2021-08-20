@@ -4,8 +4,12 @@ const app = new Application();
 const router = new Router();
 
 const staticRouter = serveStatic(router);
-staticRouter("/static/index.html", "/");
-staticRouter("/static/css/style.css", "/css/style.css");
+staticRouter("/static/index.html", "text/html; charset=utf-8", "/");
+staticRouter(
+  "/static/css/style.css",
+  "text/css; charset=utf-8",
+  "/css/style.css",
+);
 
 router.all("/(.*)", (ctx) => {
   ctx.response.body = "404";
