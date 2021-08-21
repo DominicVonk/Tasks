@@ -27,9 +27,9 @@
                 return html`<div class="flex w-full">
                     <div class="bg-white w-full text-black m-4 rounded-xl p-4 flex justify-between" .onclick=${() => this.setState({ amount: this.state.amount + 1 })}>
                         <div class="flex items-center">
-                            <div class="bg-red-600 text-white mr-4 justify-center items-center px-4 rounded-full">${this.state.amount.toString()}</div>${this.props.item}
+                            ${this.props.item}
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center"><div class="bg-red-600 text-white mr-4 justify-center items-center px-4 rounded-full">${this.state.amount.toString()}</div>
                             <div class="bg-green-600 text-white w-6 h-6 ml-4 text-center rounded-full"> <i class="fas fa-plus"></i>
                             </div>
                         </div>
