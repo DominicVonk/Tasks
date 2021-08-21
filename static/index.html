@@ -6,11 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasks</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-    Test
+    <script type="module">
+        import { RawComponent, html, registerComponent } from 'https://public.pkgjs.space/pkg/modls/core/0.7.4/dist/esm.js';
+        class TaskRow extends RawComponent {
+            static get props() {
+                return {
+                    item: String()
+                }
+            }
+            state = {
+                amount: 0
+            }
+            render() {
+                return html`<div class="flex w-full">
+                    <div class="bg-white w-full text-black m-4 rounded-xl p-4 flex justify-between" .onclick=${() => this.setState({ amount: this.state.amount + 1 })}>
+                        <div class="flex">
+                            <div class="bg-red-600 text-white mr-4 px-4 rounded-full">${this.state.amount.toString()}</div>${this.props.item}
+                        </div>
+                        <div class="flex">
+                            <div class="bg-green-600 text-white w-6 ml-4 text-center rounded-full"> <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div .onclick=${() => this.setState({ amount: this.state.amount > 0 ? this.state.amount - 1 : 0 })} class="bg-red-600 text-white w-16 text-4xl text-center m-4 flex justify-center items-center rounded-full">
+                        <i class="fas fa-minus" ></i>
+                    </div>
+                </div>`
+            }
+        }
+        registerComponent(TaskRow);
+
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            return event.returnValue = 'De bestelling wordt leeggemaakt';
+        })
+    </script>
+    <h1 class="text-4xl m-4">Drinken</h1>
+    <modls-task-row item="Cola"></modls-task-row>
+    <modls-task-row item="Cola Zero"></modls-task-row>
+    <modls-task-row item="Sinas"></modls-task-row>
+    <modls-task-row item="Ijsthee"></modls-task-row>
+    <modls-task-row item="Water Citroen"></modls-task-row>
+    <modls-task-row item="Water"></modls-task-row>
+    <modls-task-row item="Koffie"></modls-task-row>
+    <modls-task-row item="Thee"></modls-task-row>
+    <modls-task-row item="Cappuccino"></modls-task-row>
+    <modls-task-row item="Casis"></modls-task-row>
+    <modls-task-row item="Sap"></modls-task-row>
+    <modls-task-row item="0.0 Bier"></modls-task-row>
+    <modls-task-row item="Bier"></modls-task-row>
+    <modls-task-row item="Wijn"></modls-task-row>
+
+
+    <h1 class="text-4xl m-4">Taart</h1>
+    <modls-task-row item="Bosschebolvlaai"></modls-task-row>
+    <modls-task-row item="Stroopwafelvlaai"></modls-task-row>
+    <modls-task-row item="Aardbeienvlaai"></modls-task-row>
+    <modls-task-row item="Appelkruimelvlaai"></modls-task-row>
+    <modls-task-row item="Vanilleroomvlaai"></modls-task-row>
+
 </body>
 
 </html>

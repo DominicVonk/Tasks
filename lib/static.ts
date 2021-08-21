@@ -9,7 +9,7 @@ export function serveStatic(router: Router) {
       const headers = new Headers(response.headers);
       // Set the appropriate content-type header value.
       headers.set("content-type", contentType || "text/plain; charset=utf-8");
-      headers.set("content-security-policy", "default-src *");
+      headers.set("content-security-policy", "default-src * 'unsafe-inline'");
       ctx.response.headers = headers;
     });
   };
